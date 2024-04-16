@@ -1,0 +1,21 @@
+{
+    "name": "vendor/autoload.php",
+    "autoload": {
+        "psr-4": {
+            "Vendor\\AutoloadPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sekou Samassa",
+            "email": "sksamassa@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "psr/log": "^3.0@dev",
+        "psr/http-server-handler": "^1.0@dev",
+        "laminas/laminas-diactoros": "3.4.x-dev",
+        "league/container": "5.x-dev"
+    }
+}
