@@ -1,0 +1,15 @@
+{
+    "name": "sksamassa/my-framework",
+    "autoload": {
+        "psr-4": {
+            "Sksamassa\\MyFramework\\": "."
+        }
+    },
+    "authors": [
+        {
+            "name": "Sekou Samassa",
+            "email": "sksamassa@gmail.com"
+        }
+    ],
+    "require": {}
+}

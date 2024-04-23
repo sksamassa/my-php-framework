@@ -1,6 +1,7 @@
 <?php
 
     namespace Sksamassa\MyFramework\src;
+    
 
     class Application {
         public Router $router;
@@ -12,6 +13,6 @@
         }
 
         public function run() {
-            $this -> router->resolve();
+            echo $this -> router->resolve();
         }
     }

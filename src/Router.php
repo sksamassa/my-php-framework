@@ -22,6 +22,15 @@
                 echo "Not Found";
                 exit;
             }
+
+            if(is_string($callback)){
+                return $this -> renderView($callback);
+            }
+
             echo call_user_func($callback);
+        }
+
+        public function renderView(){
+            
         }
     }
