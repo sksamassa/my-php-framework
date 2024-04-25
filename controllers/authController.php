@@ -2,6 +2,7 @@
     namespace Sksamassa\MyFramework\controllers;
     use Sksamassa\MyFramework\src\Controller;
     use Sksamassa\MyFramework\src\Request;
+    use Sksamassa\MyFramework\models\RegisterModel;
 
     class AuthController extends Controller {
         public function login() {
@@ -10,10 +11,26 @@
         }
 
         public function register(Request $request) {
+            $registerModel = new RegisterModel();
             if($request -> isPost()) {
-                return 'Handle submitted data';
+                $registerModel -> loadData($request -> getBody());
+                
+                if($registerModel -> validate() && $registerModel -> register()) {
+                    return 'Success';
+                }
+
+                echo '<pre>';
+                var_dump($registerModel -> errors);
+                echo '</pre>';
+                exit;
+
+                return $this -> render('register', [
+                    'model' => $registerModel
+                ]);
             }
             $this -> setLayout('auth');
-            return $this -> render('register');
+            return $this -> render('register', [
+                'model' => $registerModel
+            ]);
         }
     }
