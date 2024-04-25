@@ -67,4 +67,20 @@
             ];
         }
         
+        public function hasError($attribute) {
+            return $this -> errors[$attribute] ?? false;
+        }
+
+        // public function getFirstError($attribute) {
+        //     return $this -> errors[$attribute] ?? false;
+        // }
+
+        public function getFirstError($attribute) {
+            $errors = $this->errors[$attribute] ?? [];
+            if (!empty($errors)) {
+                return $errors[0]; // Return the first error message
+            }
+            return false; // Return false if no error message found
+        }
+        
     }
