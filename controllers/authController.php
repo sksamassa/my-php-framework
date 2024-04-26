@@ -17,11 +17,10 @@ use Sksamassa\MyFramework\src\Application;
                 $user -> loadData($request -> getBody());
                 
                 if($user -> validate() && $user -> save()) {
-            
+                    Application::$app -> session -> setFlash('success', 'Thanks for registering.');
                     Application::$app -> response -> redirect("/");
+                    exit;
                 }
-
-    
 
                 return $this -> render('register', [
                     'model' => $user
