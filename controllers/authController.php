@@ -3,6 +3,7 @@
     use Sksamassa\MyFramework\src\Controller;
     use Sksamassa\MyFramework\src\Request;
     use Sksamassa\MyFramework\models\User;
+use Sksamassa\MyFramework\src\Application;
 
     class AuthController extends Controller {
         public function login() {
@@ -16,8 +17,8 @@
                 $user -> loadData($request -> getBody());
                 
                 if($user -> validate() && $user -> save()) {
-
-                    return 'Success';
+            
+                    Application::$app -> response -> redirect("/");
                 }
 
     
