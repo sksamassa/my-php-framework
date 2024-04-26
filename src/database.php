@@ -66,6 +66,6 @@
         }
 
         protected function log($message) {
-            echo '[' .date('Y-m-d H:i:s').'] - '.$message.PHP_EOL;
+            echo '['.date('Y-m-d H:i:s').'] - '.$message.PHP_EOL;
         }
     }
