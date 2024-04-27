@@ -1,3 +1,7 @@
+<?php
+    $this -> title = 'Signup';
+?>
+
 <h1>Create an account</h1>
 
 <?php $form = \Sksamassa\MyFramework\src\form\Form::begin('', "post") ?>

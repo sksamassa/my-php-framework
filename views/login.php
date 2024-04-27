@@ -1,4 +1,8 @@
 <?php
+    $this -> title = 'Signin';
+?>
+
+<?php
     use Sksamassa\MyFramework\src\form\Form;
 ?>
 
