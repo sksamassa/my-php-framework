@@ -26,6 +26,10 @@ use Sksamassa\MyFramework\src\Model;
             return parent::save();
         }
 
+        public function primaryKey(): string {
+            return 'id';
+        }
+
         public function rules(): array {
             return [
                 'firstname' => [self::RULE_REQUIRED],
@@ -50,5 +54,9 @@ use Sksamassa\MyFramework\src\Model;
                 'password' => 'Password',
                 'confirmPassword' => 'Confirm Password',
             ];
+        }
+
+        public function getDisplayName(): string {
+            return $this -> firstname . ' ' . $this -> lastname;
         }
     }

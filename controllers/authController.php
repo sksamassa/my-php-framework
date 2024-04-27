@@ -1,14 +1,26 @@
 <?php
     namespace Sksamassa\MyFramework\controllers;
+    use Sksamassa\MyFramework\models\LoginForm;
     use Sksamassa\MyFramework\src\Controller;
     use Sksamassa\MyFramework\src\Request;
+    use Sksamassa\MyFramework\src\Response;
     use Sksamassa\MyFramework\models\User;
-use Sksamassa\MyFramework\src\Application;
+    use Sksamassa\MyFramework\src\Application;
 
     class AuthController extends Controller {
-        public function login() {
+        public function login(Request $request, Response $response) {
+            $loginForm = new LoginForm();
+            if ($request -> isPost()) {
+                $loginForm -> loadData($request -> getBody());
+                if ($loginForm -> validate() && $loginForm -> login()) {
+                    $response -> redirect('/');
+                    return;
+                }
+            }
             $this -> setLayout('auth');
-            return $this -> render('login');
+            return $this -> render('login', [
+                'model' =>  $loginForm
+            ]);
         }
 
         public function register(Request $request) {
