@@ -2,7 +2,7 @@
     use Sksamassa\MyFramework\src\form\Form;
 ?>
 
-<h1>Create an account</h1>
+<h1>Login</h1>
 
 <?php $form = Form::begin('', "post") ?>
   <?php echo $form -> field($model, 'email') ?>

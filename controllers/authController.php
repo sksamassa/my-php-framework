@@ -6,8 +6,14 @@
     use Sksamassa\MyFramework\src\Response;
     use Sksamassa\MyFramework\models\User;
     use Sksamassa\MyFramework\src\Application;
+    use Sksamassa\MyFramework\src\middlewares\AuthMiddleware;
 
     class AuthController extends Controller {
+        public function __construct()
+        {
+            $this -> registerMiddleware(new AuthMiddleware(['profile']));
+        }
+
         public function login(Request $request, Response $response) {
             $loginForm = new LoginForm();
             if ($request -> isPost()) {
@@ -47,5 +53,9 @@
         public function logout(Request $request, Response $response) {
             Application::$app -> logout();
             $response -> redirect('/');
+        }
+
+        public function profile() {
+            return $this -> render('profile');
         }
     }
