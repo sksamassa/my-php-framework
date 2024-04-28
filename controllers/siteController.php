@@ -1,9 +1,11 @@
 <?php
     namespace Sksamassa\MyFramework\controllers;
 
+use Sksamassa\MyFramework\models\ContactForm;
 use Sksamassa\MyFramework\src\Application;
 use Sksamassa\MyFramework\src\Controller;
 use Sksamassa\MyFramework\src\Request;
+use Sksamassa\MyFramework\src\Response;
 
     class SiteController extends Controller {
         public function home() {
@@ -14,16 +16,17 @@ use Sksamassa\MyFramework\src\Request;
             return $this -> render('home', $params);
         }
 
-        public function contact() {
-            return $this -> render('contact');
-        }
-
-        public function handleContact(Request $request) {
-            $body = $request -> getBody();
-            echo '<pre>';
-            var_dump($body);
-            echo '</pre>';
-            exit;
-            return 'handle submitted data';
+        public function contact(Request $request, Response $response) {
+            $contact = new ContactForm();
+            if ($request -> isPost()) {
+                $contact -> loadData($request -> getBody());
+                if ($contact -> validate() && $contact -> send()) {
+                    Application::$app -> session -> setFlash('success', 'Thanks for contacting us.');
+                    return $response -> redirect('/contact');
+                }
+            }
+            return $this -> render('contact', [
+                'model' => $contact
+            ]);
         }
     } 
